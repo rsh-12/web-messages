@@ -7,21 +7,6 @@ body {
     font-family: "Calibri", "Roboto", sans-serif;
 }
 
-.chat_window {
-    position: absolute;
-    width: calc(100% - 20px);
-    max-width: 800px;
-    height: 500px;
-    border-radius: 10px;
-    background-color: #fff;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    background-color: #f8f8f8;
-    overflow: hidden;
-}
-
 .top_menu {
     background-color: #fff;
     width: 100%;
@@ -129,7 +114,7 @@ body {
 }
 .messages .message .text_wrapper::after {
     border-width: 13px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 .messages .message .text_wrapper::before {
     border-width: 15px;
@@ -141,7 +126,6 @@ body {
 }
 
 .bottom_wrapper {
-    position: relative;
     width: 100%;
     background-color: #fff;
     padding: 20px 20px;
