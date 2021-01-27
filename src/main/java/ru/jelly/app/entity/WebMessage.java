@@ -4,27 +4,21 @@ package ru.jelly.app.entity;
  * Time: 8:14 PM
  * */
 
-//@Entity
-//@Table(name = "message")
+import javax.persistence.*;
+
+@Entity
+@Table(name = "message")
 public class WebMessage {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String from;
     private String message;
 
     public WebMessage() {
     }
 
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
 
     public String getMessage() {
         return message;
@@ -34,11 +28,18 @@ public class WebMessage {
         this.message = message;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "WebMessage{" +
-                "from='" + from + '\'' +
-                ", message='" + message + '\'' +
+                "message='" + message + '\'' +
                 '}';
     }
 }
