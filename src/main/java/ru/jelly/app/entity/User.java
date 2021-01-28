@@ -5,6 +5,8 @@ package ru.jelly.app.entity;
  * */
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_user")
@@ -20,12 +22,34 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "created_at", updatable = false)
+    private Date createdAt = new Date();
+
+    @Column(name = "login_at")
+    private Date loginAt = new Date();
+
+    @OneToMany(mappedBy = "user")
+    private List<WebMessage> messages;
+
+    @PreRemove
+    private void setNull() {
+        messages.forEach(message -> message.setUser(null));
+    }
+
     public User() {
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public List<WebMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<WebMessage> messages) {
+        this.messages = messages;
     }
 
     public Long getId() {
@@ -50,6 +74,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getLoginAt() {
+        return loginAt;
+    }
+
+    public void setLoginAt(Date loginAt) {
+        this.loginAt = loginAt;
     }
 
     @Override
