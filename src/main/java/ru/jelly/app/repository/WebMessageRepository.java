@@ -10,5 +10,5 @@ import java.util.List;
 public interface WebMessageRepository extends JpaRepository<WebMessage, Long> {
 
     @Query(nativeQuery = true, value = "select * from message order by id desc offset ?1")
-    List<WebMessage> firstMessages(@Param("quantity") int quantity);
+    List<WebMessage> oldMessages(@Param("quantity") int quantity);
 }
