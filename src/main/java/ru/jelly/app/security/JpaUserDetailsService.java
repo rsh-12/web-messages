@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import ru.jelly.app.entity.User;
 import ru.jelly.app.repository.UserRepository;
 
+import java.util.Date;
 import java.util.function.Supplier;
 
 @Service
@@ -31,6 +32,10 @@ public class JpaUserDetailsService implements UserDetailsService {
 
         User user = userRepository.findUserByUsername(username)
                 .orElseThrow(s);
+
+        // update login at timestamp
+        user.setLoginAt(new Date());
+        userRepository.save(user);
 
         return new SecurityUser(user);
     }
