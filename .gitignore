@@ -33,4 +33,3 @@ build/
 .vscode/
 .mvn
 *.env
-src/main/resources/static/css/style.css
