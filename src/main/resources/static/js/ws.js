@@ -10,11 +10,13 @@ window.onload = function connect() {
     });
 }
 
-function draw_bg(side, text) {
+function draw_bg(side, data) {
     console.log("drawing...");
     let draw;
     draw = $($('.message_template').clone().html());
-    draw.addClass(side).find('.text').html(text);
+    draw.addClass(side).find('.text').html(data.message);
+    draw.find('.date').html(data.createdAt);
+    draw.find('.name').html(data.user)
     $('.messages').append(draw);
     return setTimeout(function () {
         return draw.addClass('appeared');
@@ -31,7 +33,7 @@ function sendMessage() {
 
     stompClient.send("/app/message", {}, JSON.stringify(
         {
-            'message': message
+            message
         }));
 }
 
