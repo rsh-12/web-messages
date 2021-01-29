@@ -7,12 +7,15 @@ package ru.jelly.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.jelly.app.entity.WebMessage;
 import ru.jelly.app.repository.WebMessageRepository;
+
+import java.security.Principal;
 
 @Controller
 public class WebMessageController {
@@ -21,16 +24,17 @@ public class WebMessageController {
     private WebMessageRepository repository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Principal principal, Model model) {
+
         model.addAttribute("messages", repository.findAll(Sort.by("id").ascending()));
         return "index";
     }
 
     @MessageMapping("/message")
     @SendTo("/topic/messages")
-    public WebMessage message(WebMessage message) {
+    public WebMessage message(@Payload WebMessage message) {
         System.out.println("message = " + message);
-        repository.save(message);
+//        repository.save(message);
         return message;
     }
 }
