@@ -67,6 +67,8 @@ public class WebMessage {
     public String toString() {
         return "WebMessage{" +
                 "message='" + message + '\'' +
+                ", createdAt=" + createdAt +
+                ", user=" + user +
                 '}';
     }
 }
