@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/base.css}" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -13,10 +13,10 @@
 </head>
 <body>
 <h1>Simple chat</h1>
-<div class="chat_window">
+<div>
 
     <ul class="messages" id="messages">
-        <li th:each="msg : ${messages}" th:utext="${msg.getMessage()}"></li>
+        <!--        <li th:each="msg : ${messages}" th:utext="${msg.getMessage()}"></li>-->
     </ul>
 
     <div class="bottom_wrapper clearfix">
@@ -24,19 +24,19 @@
             <input id="message_input_value" class="message_input" placeholder="Type your message here..."/>
         </div>
 
-        <button onclick="connect()">Connect to chat</button>
+        <!--        <button onclick="connect()">Connect to chat</button>-->
         <button onclick="sendMessage()" class="text">Send</button>
         <button onclick="disconnect()">Disconnect from chat</button>
     </div>
 </div>
 
 <div id="message_template" class="message_template">
-
     <li class="message">
         <div class="text_wrapper">
             <div class="text"></div>
         </div>
     </li>
 </div>
+
 </body>
 </html>
