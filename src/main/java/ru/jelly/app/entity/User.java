@@ -5,6 +5,10 @@ package ru.jelly.app.entity;
  * */
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +20,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(min = 3, max = 20, message = "Username must have between 3 and 20 characters")
+    @Pattern(regexp = "^[a-zA-Z]([._](?![._])|[a-zA-Z0-9]){3,20}",
+            message = "Your username must start with a letter")
     @Column(name = "username")
     private String username;
 
+    @NotBlank
+    @NotNull
     @Column(name = "password")
     private String password;
 
