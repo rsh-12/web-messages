@@ -5,6 +5,10 @@ package ru.jelly.app.entity;
  * */
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +20,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(min = 3, max = 20, message = "Username must have between 3 and 20 characters")
+    @Pattern(regexp = "^[a-zA-Z]([._](?![._])|[a-zA-Z0-9]){3,20}",
+            message = "Your username must start with a letter")
     @Column(name = "username")
     private String username;
 
+    @NotBlank
+    @NotNull
     @Column(name = "password")
     private String password;
+
+    @Transient
+    private String confirmPassword;
 
     @Column(name = "created_at", updatable = false)
     private Date createdAt = new Date();
@@ -65,7 +78,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.trim();
     }
 
     public String getPassword() {
@@ -73,7 +86,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.trim();
     }
 
     public Date getCreatedAt() {
@@ -90,6 +103,14 @@ public class User {
 
     public void setLoginAt(Date loginAt) {
         this.loginAt = loginAt;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     @Override

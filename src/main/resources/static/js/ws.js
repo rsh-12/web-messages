@@ -5,7 +5,7 @@ window.onload = function connect() {
         console.log("connected: " + frame);
         stompClient.subscribe('/topic/messages', function (response) {
             const data = JSON.parse(response.body);
-            draw_bg("left", data.message);
+            draw_bg("left", data);
         });
     });
 }
@@ -30,7 +30,9 @@ function sendMessage() {
     let message = document.getElementById('message_input_value').value;
 
     stompClient.send("/app/message", {}, JSON.stringify(
-        {'message': message}));
+        {
+            'message': message
+        }));
 }
 
 
