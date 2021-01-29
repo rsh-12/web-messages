@@ -5,6 +5,7 @@ package ru.jelly.app.entity;
  * */
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -15,6 +16,7 @@ public class WebMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(name = "message")
     private String message;
 
@@ -50,7 +52,7 @@ public class WebMessage {
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.message = message.trim();
     }
 
     public Long getId() {
