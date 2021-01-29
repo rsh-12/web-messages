@@ -22,6 +22,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @Column(name = "created_at", updatable = false)
     private Date createdAt = new Date();
 
@@ -65,7 +68,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.trim();
     }
 
     public String getPassword() {
@@ -73,7 +76,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.trim();
     }
 
     public Date getCreatedAt() {
@@ -90,6 +93,14 @@ public class User {
 
     public void setLoginAt(Date loginAt) {
         this.loginAt = loginAt;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     @Override
