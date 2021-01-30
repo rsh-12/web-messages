@@ -132,7 +132,7 @@
     cursor: pointer;
 }
 .message_input{
-    width: 90%;
+    width: 500px;
     height: 70px;
     border-radius: 30px;
     border: 1px solid rgb(226, 224, 224);
@@ -144,9 +144,6 @@
 .name{
     color: black;
     font-weight: bold;
-}
-.msg{
-    font-size: 18px;
 }
 
 .date{
