@@ -69,8 +69,8 @@ function timer() {
 }
 
 function onKeyUpEnter() {
-    var messageInput = document.getElementById('message_input_value');
-    var sendButton = document.getElementById('send');
+    const messageInput = document.getElementById('message_input_value');
+    const sendButton = document.getElementById('send');
 
     messageInput.addEventListener("keyup", function (event) {
         if ((event.key === 'Enter' || event.key === 'Enter') && !sendButton.hidden) {
