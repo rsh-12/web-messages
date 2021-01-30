@@ -27,14 +27,22 @@ function disconnect() {
     stompClient.disconnect();
 }
 
+// disables send button for 3 seconds
+function hideSendButton() {
+    document.getElementById('send').hidden = true;
+    setTimeout(function () {
+        document.getElementById('send').hidden = false;
+    }, 3000);
+}
 
 function sendMessage() {
-    let message = document.getElementById('message_input_value').value;
+    let message = document.getElementById('message_input_value').value.trim();
 
-    stompClient.send("/app/message", {}, JSON.stringify(
-        {
-            message
-        }));
-    document.getElementById('message_input_value').value = ''
+    if (message !== '') {
+        stompClient.send("/app/message", {}, JSON.stringify({message}));
+        document.getElementById('message_input_value').value = ''
+
+        hideSendButton();
+    }
 }
 
