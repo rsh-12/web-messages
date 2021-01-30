@@ -16,7 +16,7 @@ function draw_bg(side, data) {
     draw = $($('.message_template').clone().html());
     draw.addClass(side).find('.text').html(data.message);
     draw.find('.date').html(data.createdAt);
-    draw.find('.name').html(data.user)
+    draw.find('.name').html('John')
     $('.messages').append(draw);
     return setTimeout(function () {
         return draw.addClass('appeared');
@@ -35,6 +35,6 @@ function sendMessage() {
         {
             message
         }));
+    document.getElementById('message_input_value').value = ''
 }
-
 
