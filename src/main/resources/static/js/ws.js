@@ -43,6 +43,20 @@ function sendMessage() {
         document.getElementById('message_input_value').value = ''
 
         hideSendButton();
+        timer()
     }
 }
 
+
+function timer() {
+    let timeleft = 2;
+    const downloadTimer = setInterval(function () {
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = "";
+        } else {
+            document.getElementById("countdown").innerHTML = timeleft;
+        }
+        timeleft -= 1;
+    }, 1000);
+}
