@@ -30,22 +30,22 @@
         <div class="message-field">
             <ul class="messages" id="messages">
                 <!--        <li th:each="msg : ${messages}" th:utext="${msg.getMessage()}"></li>-->
-<!--                <li>-->
-<!--                    <div class="d-flex justify-content-between">-->
-<!--                        <div class="d-flex align-items-center">-->
-<!--                            <div>-->
-<!--                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8A2DmFAjcxMk7upyVPwwRLVxrfC5V3OjLHOY5Su7wErcFFKymyX7z1jJuFe0dcKyGquQ9qtCvDK99fz0XXDbsMx9Hagw7JJW7AQ&usqp=CAU&ec=45768321"-->
-<!--                                     class="mob-link-right" alt="picture" width="40px" height="40px"-->
-<!--                                     style="border-radius: 50%">-->
-<!--                            </div>-->
-<!--                            <div style="padding-left: 15px;">-->
-<!--                                <div><span class="name">John</span></div>-->
-<!--                                <div><span class="msg">Hi</span></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div><span class="date">13:12:12 (22 monday)</span></div>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <!--                <li>-->
+                <!--                    <div class="d-flex justify-content-between">-->
+                <!--                        <div class="d-flex align-items-center">-->
+                <!--                            <div>-->
+                <!--                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8A2DmFAjcxMk7upyVPwwRLVxrfC5V3OjLHOY5Su7wErcFFKymyX7z1jJuFe0dcKyGquQ9qtCvDK99fz0XXDbsMx9Hagw7JJW7AQ&usqp=CAU&ec=45768321"-->
+                <!--                                     class="mob-link-right" alt="picture" width="40px" height="40px"-->
+                <!--                                     style="border-radius: 50%">-->
+                <!--                            </div>-->
+                <!--                            <div style="padding-left: 15px;">-->
+                <!--                                <div><span class="name">John</span></div>-->
+                <!--                                <div><span class="msg">Hi</span></div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div><span class="date">13:12:12 (22 monday)</span></div>-->
+                <!--                    </div>-->
+                <!--                </li>-->
             </ul>
         </div>
         <br>
@@ -53,21 +53,26 @@
         <div class="d-flex bd-highlight">
 
             <div class="p-2 w-100 bd-highlight">
-                <div class="">
-                    <input id="message_input_value" class="message_input" placeholder="Type your message here..."/>
+                <div class="field">
+                    <input id="message_input_value" minlength="1" class="message_input" placeholder="Type your message here..."/>
                 </div>
             </div>
 
             <div class="p-2 flex-shrink-1 bd-highlight">
                 <div class="d-flex flex-column bd-highlight mb-3">
-                    <button class="c-btn-message" onclick="sendMessage()">Send</button>
+                    <div class="send-btn">
+                        <input type="submit" class="c-btn-message"
+                               onclick="sendMessage()" value="send" id="send">
+                    </div>
 
-                    <button class="c-btn-connection mt-3" onclick="connect()">Connect</button>
-
-                    <button class="c-btn-connection mt-1" onclick="disconnect()">Disconnect</button>
+                    <!--                    <button class="c-btn-connection mt-3" onclick="connect()">Connect</button>-->
+                    <!--                    <button class="c-btn-connection mt-1" onclick="disconnect()">Disconnect</button>-->
                 </div>
             </div>
         </div>
+
+        <br><br><br>
+        <br><br><br>
 
     </div>
 
