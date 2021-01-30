@@ -1,6 +1,12 @@
-window.onload = function connect() {
+window.onload = function onStart() {
+    onKeyUpEnter();
+
     const socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
+    connect();
+}
+
+function connect() {
     stompClient.connect({}, function (frame) {
         console.log("connected: " + frame);
         stompClient.subscribe('/topic/messages', function (response) {
@@ -9,6 +15,7 @@ window.onload = function connect() {
         });
     });
 }
+
 
 function draw_bg(side, data) {
     console.log("drawing...");
@@ -60,3 +67,16 @@ function timer() {
         timeleft -= 1;
     }, 1000);
 }
+
+function onKeyUpEnter() {
+    var messageInput = document.getElementById('message_input_value');
+    var sendButton = document.getElementById('send');
+
+    messageInput.addEventListener("keyup", function (event) {
+        if ((event.key === 'Enter' || event.key === 'Enter') && !sendButton.hidden) {
+            event.preventDefault();
+            sendMessage();
+        }
+    })
+}
+
