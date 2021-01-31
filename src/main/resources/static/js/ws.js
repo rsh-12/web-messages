@@ -73,7 +73,7 @@ function onKeyUpEnter() {
     const sendButton = document.getElementById('send');
 
     messageInput.addEventListener("keyup", function (event) {
-        if ((event.key === 'Enter' || event.key === 'Enter') && !sendButton.hidden) {
+        if ((event.key === 'Enter') && !sendButton.hidden) {
             event.preventDefault();
             sendMessage();
         }
