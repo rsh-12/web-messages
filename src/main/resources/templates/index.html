@@ -16,9 +16,14 @@
 <body>
 <nav class="c-navbar">
     <div class="container">
-        <div class="d-flex flex-row-reverse bd-highlight">
+        <div class="d-flex justify-content-between">
+            <div>
+                <span id="username" th:text="${username}"></span>
+            </div>
             <div class="p-2 bd-highlight">
-                <button class="c-btn">Sign Out</button>
+                <form th:action="@{/logout}" method="post">
+                    <button class="c-btn">Sign Out</button>
+                </form>
             </div>
         </div>
     </div>
