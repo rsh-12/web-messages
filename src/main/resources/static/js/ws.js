@@ -23,7 +23,7 @@ function draw_bg(side, data) {
     draw = $($('.message_template').clone().html());
     draw.addClass(side).find('.text').html(data.message);
     draw.find('.date').html(data.createdAt);
-    draw.find('.name').html('John')
+    draw.find('.name').html(document.getElementById('username').innerHTML);
     $('.messages').append(draw);
     return setTimeout(function () {
         return draw.addClass('appeared');
