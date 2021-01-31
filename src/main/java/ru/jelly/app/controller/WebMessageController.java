@@ -4,8 +4,8 @@ package ru.jelly.app.controller;
  * Time: 8:32 PM
  * */
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -13,28 +13,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.jelly.app.entity.WebMessage;
-import ru.jelly.app.repository.WebMessageRepository;
+import ru.jelly.app.service.WebMessageService;
 
 import java.security.Principal;
 
+@Slf4j
 @Controller
 public class WebMessageController {
 
+    private final WebMessageService webMessageService;
+
     @Autowired
-    private WebMessageRepository repository;
+    public WebMessageController(WebMessageService webMessageService) {
+        this.webMessageService = webMessageService;
+    }
 
     @GetMapping
     public String index(Principal principal, Model model) {
         model.addAttribute("username", principal.getName());
-        model.addAttribute("messages", repository.findAll(Sort.by("id").ascending()));
+        model.addAttribute("messages", webMessageService.findAll());
         return "index";
     }
 
     @MessageMapping("/message")
     @SendTo("/topic/messages")
-    public WebMessage message(@Payload WebMessage message) {
-        System.out.println("message = " + message);
-//        repository.save(message);
+    public WebMessage message(@Payload WebMessage message, Principal principal) {
+        log.info(">>> message: {}", message);
+        log.info(">>> username: {}", principal.getName());
+
+        webMessageService.saveMessage(message, principal.getName());
         return message;
     }
 }
