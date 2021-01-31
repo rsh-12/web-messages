@@ -24,7 +24,7 @@ public class User {
     @Size(min = 3, max = 20, message = "Username must have between 3 and 20 characters")
     @Pattern(regexp = "^[a-zA-Z]([._](?![._])|[a-zA-Z0-9]){3,20}",
             message = "Your username must start with a letter")
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @NotBlank
