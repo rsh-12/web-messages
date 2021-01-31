@@ -25,7 +25,7 @@ public class WebMessageController {
 
     @GetMapping
     public String index(Principal principal, Model model) {
-
+        model.addAttribute("username", principal.getName());
         model.addAttribute("messages", repository.findAll(Sort.by("id").ascending()));
         return "index";
     }
