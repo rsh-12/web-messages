@@ -4,6 +4,8 @@ package ru.jelly.app.entity;
  * Time: 8:14 PM
  * */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -20,10 +22,11 @@ public class WebMessage {
     @Column(name = "message")
     private String message;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss (dd.MM.yy)", timezone = "Asia/Yekaterinburg")
     @Column(name = "created_at", updatable = false)
     private Date createdAt = new Date();
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(cascade = {CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
@@ -67,8 +70,6 @@ public class WebMessage {
     public String toString() {
         return "WebMessage{" +
                 "message='" + message + '\'' +
-                ", createdAt=" + createdAt +
-                ", user=" + user +
                 '}';
     }
 }
