@@ -33,20 +33,24 @@
 
     <div>
         <div class="message-field">
-            <ul class="messages" id="messages">
-                <li th:each="msg : ${messages}" th:utext="${msg.getMessage()}"></li>
-                <li>
+            <ul>
+                <li class="message" th:each="msg : ${messages}">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex align-items-center">
                             <div>
-                                <div><span class="name">John</span></div>
-                                <div><span class="msg">Hi</span></div>
+                                <div><span class="name" th:text="${msg.user.getUsername()}">John</span></div>
+                                <div><span class="msg text" th:utext="${msg.getMessage()}">Hi</span></div>
+                                <br>
                             </div>
                         </div>
-                        <div><span class="date">13:12:12 (22 monday)</span></div>
+                        <div><span class="date" th:text="${msg.getCreatedAt()}">13:12:12 (22 monday)</span></div>
                     </div>
                 </li>
             </ul>
+
+            <ul class="messages">
+            </ul>
+
         </div>
         <br>
         <hr>
