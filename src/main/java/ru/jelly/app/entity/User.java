@@ -4,6 +4,8 @@ package ru.jelly.app.entity;
  * Time: 7:38 AM
  * */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -41,7 +43,8 @@ public class User {
     @Column(name = "login_at")
     private Date loginAt = new Date();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<WebMessage> messages;
 
     @PreRemove
