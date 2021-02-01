@@ -41,7 +41,7 @@ public class User {
     @Column(name = "login_at")
     private Date loginAt = new Date();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<WebMessage> messages;
 
     @PreRemove
