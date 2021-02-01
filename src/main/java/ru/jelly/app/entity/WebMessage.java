@@ -4,6 +4,8 @@ package ru.jelly.app.entity;
  * Time: 8:14 PM
  * */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -26,6 +28,7 @@ public class WebMessage {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     public WebMessage() {
