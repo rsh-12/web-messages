@@ -1,4 +1,5 @@
 window.onload = function onStart() {
+
     onKeyUpEnter();
 
     const socket = new SockJS('/ws');
@@ -48,6 +49,9 @@ function sendMessage() {
         stompClient.send("/app/message", {}, JSON.stringify({message}));
         document.getElementById('message_input_value').value = ''
 
+        // let elem = document.getElementById('message-field');
+        // elem.scrollTop = elem.scrollHeight;
+
         hideSendButton();
         timer()
     }
@@ -78,4 +82,3 @@ function onKeyUpEnter() {
         }
     })
 }
-
