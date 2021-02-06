@@ -1,6 +1,13 @@
-window.onload = function connect() {
+window.onload = function onStart() {
+
+    onKeyUpEnter();
+
     const socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
+    connect();
+}
+
+function connect() {
     stompClient.connect({}, function (frame) {
         console.log("connected: " + frame);
         stompClient.subscribe('/topic/messages', function (response) {
@@ -10,13 +17,13 @@ window.onload = function connect() {
     });
 }
 
+
 function draw_bg(side, data) {
-    console.log("drawing...");
     let draw;
     draw = $($('.message_template').clone().html());
     draw.addClass(side).find('.text').html(data.message);
     draw.find('.date').html(data.createdAt);
-    draw.find('.name').html('John')
+    // draw.find('.name').html();
     $('.messages').append(draw);
     return setTimeout(function () {
         return draw.addClass('appeared');
@@ -42,6 +49,9 @@ function sendMessage() {
         stompClient.send("/app/message", {}, JSON.stringify({message}));
         document.getElementById('message_input_value').value = ''
 
+        // let elem = document.getElementById('message-field');
+        // elem.scrollTop = elem.scrollHeight;
+
         hideSendButton();
         timer()
     }
@@ -59,4 +69,16 @@ function timer() {
         }
         timeleft -= 1;
     }, 1000);
+}
+
+function onKeyUpEnter() {
+    const messageInput = document.getElementById('message_input_value');
+    const sendButton = document.getElementById('send');
+
+    messageInput.addEventListener("keyup", function (event) {
+        if ((event.key === 'Enter') && !sendButton.hidden) {
+            event.preventDefault();
+            sendMessage();
+        }
+    })
 }

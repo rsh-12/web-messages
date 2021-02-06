@@ -68,7 +68,7 @@
     float: right;
 }
 
-.c-navbar{
+.c-navbar {
     width: 100%;
     margin-bottom: 50px;
     padding: 20px;
@@ -76,7 +76,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-.c-btn{
+.c-btn {
     background-color: white;
     border: none;
     border-radius: 10px;
@@ -86,11 +86,12 @@
     font-weight: 600;
     cursor: pointer;
 }
-.c-btn:hover{
+
+.c-btn:hover {
     color: black;
 }
 
-.message-field{
+.message-field {
     height: 500px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -100,11 +101,11 @@
     box-shadow: 0 0 1px rgb(151, 148, 148);
 }
 
-.message_template{
+.message_template {
     margin-bottom: 100px;
 }
 
-.c-btn-message{
+.c-btn-message {
     background-color: #FF8F8F;
     border-radius: 10px;
     padding: 5px;
@@ -116,12 +117,13 @@
     cursor: pointer;
     box-shadow: 0 4px rgb(245, 226, 226);
 }
-.c-btn-message:active{
+
+.c-btn-message:active {
     box-shadow: 0 1px rgb(218, 217, 217);
     transform: translateY(4px);
 }
 
-.c-btn-connection{
+.c-btn-connection {
     background-color: rgb(245, 241, 241);
     border-radius: 10px;
     padding: 5px;
@@ -131,7 +133,8 @@
     outline: none;
     cursor: pointer;
 }
-.message_input{
+
+.message_input {
     width: 500px;
     height: 70px;
     border-radius: 30px;
@@ -141,15 +144,21 @@
     outline: none;
 }
 
-.name{
+.name {
     color: black;
     font-weight: bold;
 }
 
-.date{
+.date {
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
     line-height: 26px;
     color: #5c5b5b;
+}
+
+.message-field {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
 }

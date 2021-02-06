@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
+
+
+<form th:action="@{/registration}" method="post" th:object="${user}">
+
+    <span class="error" th:if="${usernameError}" th:text="${usernameError}"></span>
+
+    <input type="text" name="username">
+    <span class="error" th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}"></span>
+    <br><br>
+
+
+    <input type="password" name="password">
+    <span class="error" th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}"></span>
+    <br><br>
+
+    <input type="password" name="confirmPassword">
+    <span class="error" th:if="${passwordError}" th:text="${passwordError}"></span>
+    <br><br>
+
+
+</form>
 
 </body>
 </html>

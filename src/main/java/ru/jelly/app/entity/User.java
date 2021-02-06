@@ -4,6 +4,8 @@ package ru.jelly.app.entity;
  * Time: 7:38 AM
  * */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,7 +26,7 @@ public class User {
     @Size(min = 3, max = 20, message = "Username must have between 3 and 20 characters")
     @Pattern(regexp = "^[a-zA-Z]([._](?![._])|[a-zA-Z0-9]){3,20}",
             message = "Your username must start with a letter")
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @NotBlank
@@ -41,7 +43,8 @@ public class User {
     @Column(name = "login_at")
     private Date loginAt = new Date();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<WebMessage> messages;
 
     @PreRemove
