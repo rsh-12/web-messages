@@ -43,17 +43,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
-                .mvcMatchers("/registration/*","/login/*", "/resources/**", "/static/**").permitAll()
+                .mvcMatchers("/registration/**", "/static/**").permitAll()
+                .mvcMatchers("/**").authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/").permitAll()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                 .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .deleteCookies("JSESSIONID")
+                .deleteCookies("JSESSEIONID")
                 .logoutSuccessUrl("/login");
     }
 }
