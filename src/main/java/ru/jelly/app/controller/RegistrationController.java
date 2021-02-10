@@ -32,12 +32,12 @@ public class RegistrationController {
     @GetMapping
     public String getRegistrationPage(@ModelAttribute("user") User candidate,
                                       Principal principal) {
-        return principal == null ? "security/registration" : "index";
+        return principal == null ? "security/registration" : "chat";
     }
 
     @PostMapping
-    public void registerUser(@Valid @ModelAttribute("user") User candidate,
+    public String registerUser(@Valid @ModelAttribute("user") User candidate,
                              BindingResult bindingResult, Model model) {
-        userService.registerUser(candidate, bindingResult, model);
+        return userService.registerUser(candidate, bindingResult, model);
     }
 }
