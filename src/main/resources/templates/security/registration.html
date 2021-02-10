@@ -18,20 +18,27 @@
 
         <span class="error" th:if="${usernameError}" th:text="${usernameError}"></span>
 
-        <input type="text" name="username">
+        <label>Username
+            <input type="text" name="username">
+        </label>
         <span class="error" th:if="${#fields.hasErrors('username')}"
               th:errors="*{username}"></span>
         <br><br>
 
-        <input type="password" name="password">
+        <label>Password
+            <input type="password" name="password">
+        </label>
         <span class="error" th:if="${#fields.hasErrors('username')}"
               th:errors="*{username}"></span>
         <br><br>
 
-        <input type="password" name="confirmPassword">
+        <label>Confirm password
+            <input type="password" name="confirmPassword">
+        </label>
         <span class="error" th:if="${passwordError}" th:text="${passwordError}"></span>
         <br><br>
 
+        <button type="submit">create an account</button>
     </form>
 </div>
 
