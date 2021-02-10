@@ -1,0 +1,18 @@
+<th:block th:fragment="navbar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <nav class="c-navbar">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <span id="username" th:text="${username}"></span>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <form th:action="@{/logout}" method="post">
+                        <button class="c-btn">Sign Out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</th:block>
