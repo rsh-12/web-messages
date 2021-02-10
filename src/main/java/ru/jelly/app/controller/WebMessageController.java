@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import java.security.Principal;
 
 @Slf4j
 @Controller
+@PreAuthorize("isAuthenticated()")
 public class WebMessageController {
 
     private final WebMessageService webMessageService;
@@ -30,9 +32,13 @@ public class WebMessageController {
 
     @GetMapping
     public String index(Principal principal, Model model) {
-        model.addAttribute("username", principal.getName());
-        model.addAttribute("messages", webMessageService.findAll());
-        return "index";
+
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+            model.addAttribute("messages", webMessageService.findAll());
+        }
+
+        return principal == null ? "security/login" : "chat";
     }
 
     @MessageMapping("/message")
